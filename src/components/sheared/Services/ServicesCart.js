@@ -8,9 +8,12 @@ const ServicesCart = ({ ser }) => {
     return (
         <div>
             <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <PhotoProvider>
+                <PhotoProvider
+                speed={() => 800}
+                easing={(type) => (type === 2 ? 'cubic-bezier(0.36, 0, 0.66, -0.56)' : 'cubic-bezier(0.34, 1.56, 0.64, 1)')}
+                >
                     <PhotoView src={img}>
-                        <img className="rounded-t-lg h-48 w-full" src={img} alt="" />
+                        <img style={{ objectFit: 'cover' }} className="rounded-t-lg h-48 w-full" src={img} alt="" />
                     </PhotoView>
                 </PhotoProvider>
                 <div className="p-5">
