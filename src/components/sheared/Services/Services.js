@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import ServicesCart from './ServicesCart';
 
 const Services = () => {
@@ -14,7 +15,7 @@ const Services = () => {
 
 
     return (
-        <div className='lg:mx-20'>
+        <div className='p-2 lg:mx-20'>
 
             <h5 className="my-16 text-center text-3xl font-bold tracking-tight  text-orange-500">My Services Photography Here</h5>
 
@@ -30,7 +31,9 @@ const Services = () => {
             </div>
 
            <div className='text-center my-10'>
+           <Link to='/allServices'>
            <button className="btn btn-outline btn-warning">See All</button>
+           </Link>
            </div>
         </div>
     );
