@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png'
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Navbar = () => {
-   
+
+  const { user } = useContext(AuthContext)
+  console.log(user);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -11,81 +16,81 @@ const Navbar = () => {
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
           <div className="flex items-center">
-           <Link
+            <Link
               to="/"
               aria-label="Candid Captures"
               title="Candid Captures"
               className="inline-flex items-center mr-8"
             >
-             <img className='w-16 h-16 rounded-xl' src={logo} alt="" />
+              <img className='w-16 h-16 rounded-xl' src={logo} alt="" />
 
               <span className="ml-2 text-xl text-blue-500 font-bold tracking-wide  uppercase">
                 Candid Captures
               </span>
-           </Link>
+            </Link>
             <ul className="flex items-center hidden space-x-8 lg:flex">
               <li>
-               <Link
+                <Link
                   to="/home"
                   aria-label="Home"
                   title="Home"
                   className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
                 >
                   Home
-               </Link>
+                </Link>
               </li>
               <li>
-               <Link
+                <Link
                   to="/"
                   aria-label="Add Services"
                   title="Add Services"
                   className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
                 >
                   Add Services
-               </Link>
+                </Link>
               </li>
               <li>
-               <Link
+                <Link
                   to="/"
                   aria-label="My Review"
                   title="My Review"
                   className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
                 >
-                 My Review
-               </Link>
+                  My Review
+                </Link>
               </li>
               <li>
-               <Link
+                <Link
                   to="/"
                   aria-label="Blogs"
                   title="Blogs"
                   className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
                 >
                   Blogs
-               </Link>
+                </Link>
               </li>
             </ul>
           </div>
 
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
-              <button 
+              <button
                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 bg-gray-400 hover:bg-gray-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                 aria-label="Logout"
                 title="Logout"
               >
-               Logout
+                Logout
               </button>
             </li>
             <li>
-             <Link
+              <Link
                 to="/register"
                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 bg-sky-400 hover:bg-sky-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                 aria-label="Sign up"
                 title="Sign up"
               >
                 Sign up
-             </Link>
+              </Link>
             </li>
           </ul>
           <div className="lg:hidden">
@@ -115,19 +120,19 @@ const Navbar = () => {
                 <div className="p-5 bg-white border rounded shadow-sm">
                   <div className="flex items-center justify-between mb-4">
                     <div>
-                     <Link
+                      <Link
                         to="/"
                         aria-label="Candid Captures"
                         title="Candid Captures"
                         className="inline-flex items-center"
                       >
 
-                       <img className='w-16 h-16 rounded-xl' src={logo} alt="" />
+                        <img className='w-16 h-16 rounded-xl' src={logo} alt="" />
 
                         <span className="ml-2 text-xl font-bold tracking-wide text-blue-500 uppercase">
                           Candid Captures
                         </span>
-                     </Link>
+                      </Link>
                     </div>
                     <div>
                       <button
@@ -148,63 +153,63 @@ const Navbar = () => {
                   <nav>
                     <ul className="space-y-4">
                       <li>
-                       <Link
+                        <Link
                           to="/home"
                           aria-label="Home"
                           title="Home"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
                           Home
-                       </Link>
+                        </Link>
                       </li>
                       <li>
-                       <Link
+                        <Link
                           to="/home"
                           aria-label="Add Services"
                           title="Add Services"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
                           Add Services
-                       </Link>
+                        </Link>
                       </li>
                       <li>
-                       <Link
+                        <Link
                           to="/"
                           aria-label="My Review"
                           title="My Review"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
-                         My Review
-                       </Link>
+                          My Review
+                        </Link>
                       </li>
                       <li>
-                       <Link
+                        <Link
                           to="/"
                           aria-label="Blogs"
                           title="Blogs"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
                           Blogs
-                       </Link>
+                        </Link>
                       </li>
                       <li>
-                      <button 
-                className="inline-flex items-center justify-center h-12 px-6 font-medium w-full tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 bg-gray-400 hover:bg-gray-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                aria-label="Logout"
-                title="Logout"
-              >
-               Logout
-              </button>
+                        <button
+                          className="inline-flex items-center justify-center h-12 px-6 font-medium w-full tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 bg-gray-400 hover:bg-gray-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                          aria-label="Logout"
+                          title="Logout"
+                        >
+                          Logout
+                        </button>
                       </li>
                       <li>
-                       <Link
+                        <Link
                           to="/register"
                           className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 bg-sky-400 hover:bg-sky-500 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                           aria-label="Sign up"
                           title="Sign up"
                         >
                           Sign up
-                       </Link>
+                        </Link>
                       </li>
                     </ul>
                   </nav>
@@ -217,6 +222,6 @@ const Navbar = () => {
     </div>
   );
 };
-        
+
 
 export default Navbar;
