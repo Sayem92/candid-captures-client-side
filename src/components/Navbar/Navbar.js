@@ -7,17 +7,17 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Navbar = () => {
 
-  const { user , logOut} = useContext(AuthContext)
+  const { user, logOut } = useContext(AuthContext);
   // console.log(user);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleLogOut = () =>{
+  const handleLogOut = () => {
     logOut()
-    .then(()=> {
-      toast.success('logout successfully')
-    })
-    .catch(err => console.log(err))
+      .then(() => {
+        toast.success('logout successfully')
+      })
+      .catch(err => console.log(err))
   }
 
 
@@ -49,26 +49,31 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/"
-                  aria-label="Add Services"
-                  title="Add Services"
-                  className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
-                >
-                  Add Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/"
-                  aria-label="My Review"
-                  title="My Review"
-                  className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
-                >
-                  My Review
-                </Link>
-              </li>
+              {
+                user &&
+                <>
+                  <li>
+                    <Link
+                      to="/"
+                      aria-label="Add Services"
+                      title="Add Services"
+                      className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
+                    >
+                      Add Services
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/"
+                      aria-label="My Review"
+                      title="My Review"
+                      className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
+                    >
+                      My Review
+                    </Link>
+                  </li>
+                </>
+              }
               <li>
                 <Link
                   to="/"
@@ -83,26 +88,35 @@ const Navbar = () => {
           </div>
 
           <ul className="flex items-center hidden space-x-8 lg:flex">
-            <li>
-              <button
-              onClick={handleLogOut}
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 bg-gray-400 hover:bg-gray-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                aria-label="Logout"
-                title="Logout"
-              >
-                Logout
-              </button>
-            </li>
-            <li>
-              <Link
-                to="/register"
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 bg-sky-400 hover:bg-sky-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                aria-label="Sign up"
-                title="Sign up"
-              >
-                Sign up
-              </Link>
-            </li>
+
+            {user ?
+
+              <li>
+                <button
+                  onClick={handleLogOut}
+                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 bg-gray-400 hover:bg-gray-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                  aria-label="Logout"
+                  title="Logout"
+                >
+                  Logout
+                </button>
+              </li>
+
+              :
+
+              <li>
+                <Link
+                  to="/register"
+                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 bg-sky-400 hover:bg-sky-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                  aria-label="Sign up"
+                  title="Sign up"
+                >
+                  Sign up
+                </Link>
+              </li>
+
+            }
+
           </ul>
           <div className="lg:hidden">
             <button
@@ -127,7 +141,7 @@ const Navbar = () => {
               </svg>
             </button>
             {isMenuOpen && (
-              <div className="absolute top-0 left-0 w-full">
+              <div className="absolute z-10 top-0 left-0 w-full">
                 <div className="p-5 bg-white border rounded shadow-sm">
                   <div className="flex items-center justify-between mb-4">
                     <div>
@@ -173,26 +187,34 @@ const Navbar = () => {
                           Home
                         </Link>
                       </li>
-                      <li>
-                        <Link
-                          to="/home"
-                          aria-label="Add Services"
-                          title="Add Services"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                        >
-                          Add Services
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/"
-                          aria-label="My Review"
-                          title="My Review"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                        >
-                          My Review
-                        </Link>
-                      </li>
+
+                      {
+                        user &&
+                        <>
+
+                          <li>
+                            <Link
+                              to="/"
+                              aria-label="Add Services"
+                              title="Add Services"
+                              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                            >
+                              Add Services
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/"
+                              aria-label="My Review"
+                              title="My Review"
+                              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                            >
+                              My Review
+                            </Link>
+                          </li>
+                        </>
+                      }
+
                       <li>
                         <Link
                           to="/"
@@ -203,26 +225,35 @@ const Navbar = () => {
                           Blogs
                         </Link>
                       </li>
-                      <li>
-                        <button
-                        onClick={handleLogOut}
-                          className="inline-flex items-center justify-center h-12 px-6 font-medium w-full tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 bg-gray-400 hover:bg-gray-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                          aria-label="Logout"
-                          title="Logout"
-                        >
-                          Logout
-                        </button>
-                      </li>
-                      <li>
-                        <Link
-                          to="/register"
-                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 bg-sky-400 hover:bg-sky-500 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                          aria-label="Sign up"
-                          title="Sign up"
-                        >
-                          Sign up
-                        </Link>
-                      </li>
+
+                      {
+                        user ?
+
+                          <li>
+                            <button
+                              onClick={handleLogOut}
+                              className="inline-flex items-center justify-center h-12 px-6 font-medium w-full tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 bg-gray-400 hover:bg-gray-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                              aria-label="Logout"
+                              title="Logout"
+                            >
+                              Logout
+                            </button>
+                          </li>
+
+                          :
+
+                          <li>
+                            <Link
+                              to="/register"
+                              className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 bg-sky-400 hover:bg-sky-500 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                              aria-label="Sign up"
+                              title="Sign up"
+                            >
+                              Sign up
+                            </Link>
+                          </li>
+                      }
+
                     </ul>
                   </nav>
                 </div>
