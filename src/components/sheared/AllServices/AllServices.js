@@ -13,8 +13,7 @@ const AllServices = () => {
     return (
         <div className='p-2 lg:mx-20 mb-20'>
 
-            <h5 className="my-16 text-center text-3xl font-bold tracking-tight  text-amber-500">All Services Here</h5>
-            <div className='grid grid-cols-1 lg:grid-cols-3 gap-10'>
+            <div className='grid grid-cols-1 lg:grid-cols-3 gap-10 mt-20'>
                 {
                     servicesAll?.map(ser => <ServicesCart
                         key={ser.services_id}
