@@ -6,7 +6,7 @@ import google from '../../assets/Google.png'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
-    const { createUser, googleSignIn } = useContext(AuthContext)
+    const { createUser, updateName, googleSignIn } = useContext(AuthContext)
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -15,7 +15,7 @@ const Register = () => {
         const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
-        
+
         // create user -----------------
         createUser(email, password)
             .then(result => {
@@ -23,12 +23,25 @@ const Register = () => {
                 console.log(user);
                 toast.success('Create account successfully')
                 form.reset()
+                userNameProfileUpdate(name, photoURL);
+
             })
             .then(error => console.log(error))
 
     }
 
-    
+    // update profile
+    const userNameProfileUpdate = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateName(profile)
+        .then(() => { toast.success('user profile update')})
+        .catch(error => console.error(error))
+    }
+
+
     // google login---------------
     const handleGoogleLogin = () => {
         googleSignIn()
@@ -39,6 +52,7 @@ const Register = () => {
             })
             .catch(err => console.log(err));
     }
+    
 
 
     return (
