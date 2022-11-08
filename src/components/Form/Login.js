@@ -6,24 +6,38 @@ import google from '../../assets/Google.png'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const { googleSignIn } = useContext(AuthContext)
+    const { login, googleSignIn } = useContext(AuthContext)
 
     const handleSubmit = e => {
         e.preventDefault()
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        // console.log( email, password);
+
+        // user login------------
+        login(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('login successfully');
+                form.reset();
+
+            })
+            .catch(err => {
+                console.log(err)
+                toast.error('user not found');
+            });
 
     }
 
+    // google login---------------
     const handleGoogleLogin = () => {
         googleSignIn()
             .then(result => {
                 const user = result.user;
                 console.log(user);
                 toast.success('Google login successfully');
-                 
+
             })
             .catch(err => console.log(err))
     }

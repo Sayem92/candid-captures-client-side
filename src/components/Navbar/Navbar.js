@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Navbar = () => {
 
-  const { user } = useContext(AuthContext)
-  console.log(user);
+  const { user , logOut} = useContext(AuthContext)
+  // console.log(user);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleLogOut = () =>{
+    logOut()
+    .then(()=> {
+      toast.success('logout successfully')
+    })
+    .catch(err => console.log(err))
+  }
+
 
   return (
     <div className="bg-gray-100 ">
@@ -75,6 +85,7 @@ const Navbar = () => {
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
               <button
+              onClick={handleLogOut}
                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 bg-gray-400 hover:bg-gray-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                 aria-label="Logout"
                 title="Logout"
@@ -194,6 +205,7 @@ const Navbar = () => {
                       </li>
                       <li>
                         <button
+                        onClick={handleLogOut}
                           className="inline-flex items-center justify-center h-12 px-6 font-medium w-full tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 bg-gray-400 hover:bg-gray-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                           aria-label="Logout"
                           title="Logout"
