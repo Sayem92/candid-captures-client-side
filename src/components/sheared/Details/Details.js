@@ -1,9 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
-import { Link, useLoaderData } from 'react-router-dom';
+import { json, Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import DisplayReview from '../DisplayReview/DisplayReview';
 
@@ -31,7 +32,19 @@ const Details = () => {
     }
 
     const addReview = () =>{
-            console.log(newReview);
+           
+            fetch('http://localhost:5000/addReview',{
+                method: "POST",
+                headers: {
+                    "content-type" : "application/json"
+                },
+                body: JSON.stringify(newReview)
+            })
+            .then(res => res.json())
+            .then(data =>{
+                toast.success('Add a new review successfully')
+                console.log("new review data" ,data);
+            })
        
 
     }
@@ -84,7 +97,7 @@ const Details = () => {
                             className="btn btn-success">Add a review</button>
                         
                         :
-                        
+
                         <Link to='/login'>
                             <button className="btn btn-warning">Please login to add a review</button>
                         </Link>
