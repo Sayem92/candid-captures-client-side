@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
@@ -8,16 +9,35 @@ import DisplayReview from '../DisplayReview/DisplayReview';
 
 
 const Details = () => {
+    const [review, setReview] = useState('')
     const serDetails = useLoaderData();
-    const { user, setServicesIdReview } = useContext(AuthContext);
-    // console.log(serDetails);
+    const { user } = useContext(AuthContext);
     const { _id, img, title, price, body } = serDetails;
+    const {displayName, email, photoURL} = user;
 
-    setServicesIdReview(_id)
+    // collect review text------
+    const handleReviewChange = e =>{
+        setReview(e.target.value);
+    }
 
-    console.log(_id);
+    //create new review--------
+    const newReview = {
+        reviewId : _id,
+        reviewerName: displayName,   
+        photoURL,
+        email,
+        review
+
+    }
+
+    const addReview = () =>{
+            console.log(newReview);
+       
+
+    }
+
     return (
-        <div className='p-2 lg:m-20'>
+        <div className='p-2 lg:m-20 mb-10'>
             <div>
                 <div className=" bg-white rounded-lg border  shadow-md  border-gray-300">
                     <PhotoProvider
@@ -30,18 +50,18 @@ const Details = () => {
                     </PhotoProvider>
                     <div className="p-5">
 
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-white">{title}</h5>
+                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">{title}</h5>
                         <p className="mb-3 font-medium text-black ">Price: ${price}</p>
-                        <p className="mb-3 font-normal text-gray-700 text-gray-400">{body}</p>
+                        <p className="mb-3 font-normal text-gray-700 ">{body}</p>
 
                     </div>
                 </div>
             </div>
 
             {/* all review  */}
-            <h5 className="my-16 text-center text-3xl font-bold tracking-tight  text-orange-500">Reviews</h5>
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 mt-16'>
 
+            <h5 className="mt-16 text-3xl font-bold tracking-tight  text-orange-500">Reviews</h5>
+            <div className='mt-4'>
 
                 <DisplayReview></DisplayReview>
                 <DisplayReview></DisplayReview>
@@ -49,14 +69,22 @@ const Details = () => {
                 <DisplayReview></DisplayReview>
             </div>
 
-            <div className='mx-5 my-10 w-full lg:m-10'>
+                 {/* add review textarea  */}
+            <div className='lg:w-96 mt-4'>
+               <p className='text-2xl font-semibold py-2'>Add Your Review</p>
+                <textarea onChange={handleReviewChange} placeholder="Your review" name='review' className="w-full h-28 p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400  text-gray-900 border border-gray-600" required></textarea>
+            </div>
+
+            <div className=''>
 
                 {
                     user ?
-                        <Link to='/addReview'>
-                            <button className="btn btn-success">Add a review</button>
-                        </Link>
+                       
+                            <button onClick={addReview}
+                            className="btn btn-success">Add a review</button>
+                        
                         :
+                        
                         <Link to='/login'>
                             <button className="btn btn-warning">Please login to add a review</button>
                         </Link>
