@@ -1,53 +1,80 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
-import { json, Link, useLoaderData } from 'react-router-dom';
+import {  Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import DisplayReview from '../DisplayReview/DisplayReview';
 
 
 const Details = () => {
-    const [review, setReview] = useState('')
-    const serDetails = useLoaderData();
+    // get mongo db review-------------
+    const [allReviews, setAllReviews] = useState([]);
+    // review text------
+    const [review, setReview] = useState('');
     const { user } = useContext(AuthContext);
+    // single service details------------
+    const serDetails = useLoaderData();
     const { _id, img, title, price, body } = serDetails;
-    const {displayName, email, photoURL} = user;
 
     // collect review text------
-    const handleReviewChange = e =>{
+    const handleReviewChange = e => {
         setReview(e.target.value);
     }
 
-    //create new review--------
-    const newReview = {
-        reviewId : _id,
-        reviewerName: displayName,   
-        photoURL,
-        email,
-        review
 
-    }
+    // console.log(user);
+    // post review to mongodb---------------
+    const addReview = () => {
 
-    const addReview = () =>{
-           
-            fetch('http://localhost:5000/addReview',{
+        if(user){
+            const { displayName, email, photoURL } = user;
+            const createReview = {
+                reviewId: _id,
+                reviewerName: displayName,
+                photoURL,
+                email,
+                review
+            }
+
+
+            fetch('http://localhost:5000/addReview', {
                 method: "POST",
                 headers: {
-                    "content-type" : "application/json"
+                    "content-type": "application/json"
                 },
-                body: JSON.stringify(newReview)
+                body: JSON.stringify(createReview)
             })
-            .then(res => res.json())
-            .then(data =>{
-                toast.success('Add a new review successfully')
-                console.log("new review data" ,data);
-            })
-       
+                .then(res => res.json())
+                .then(data => {
+                    toast.success('Add a new review successfully')
+                    console.log("new review data", data);
+                })
+
+
+        }
 
     }
+
+    // data update baki ---
+
+       // get review mongodb--------------
+       useEffect(() => {
+        fetch(`http://localhost:5000/getReview/${_id}`)
+            .then(res => res.json())
+            .then(data => {
+                setAllReviews(data)
+                console.log("load review data", data);
+            })
+
+    }, []);
+
+
+   
+
 
     return (
         <div className='p-2 lg:m-20 mb-10'>
@@ -64,38 +91,50 @@ const Details = () => {
                     <div className="p-5">
 
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">{title}</h5>
-                        <p className="mb-3 font-medium text-black ">Price: ${price}</p>
+                        <p className="mb-3 font-medium text-black ">Price: $ {price}</p>
                         <p className="mb-3 font-normal text-gray-700 ">{body}</p>
 
                     </div>
                 </div>
             </div>
+            
 
             {/* all review  */}
-
-            <h5 className="mt-16 text-3xl font-bold tracking-tight  text-orange-500">Reviews</h5>
+        
             <div className='mt-4'>
+               
+                { allReviews?.length === 0 ? 
+                     <h1 className='text-3xl font-bold text-blue-500'>No review available</h1>
+                   
+                    :
 
-                <DisplayReview></DisplayReview>
-                <DisplayReview></DisplayReview>
-                <DisplayReview></DisplayReview>
-                <DisplayReview></DisplayReview>
+                    allReviews?.map(personReview => <DisplayReview
+                        key={personReview?._id}
+                        personReview={personReview}
+                        
+                        ></DisplayReview> )
+                }
+                
+               
             </div>
 
-                 {/* add review textarea  */}
+            {/* add review textarea  */}
             <div className='lg:w-96 mt-4'>
-               <p className='text-2xl font-semibold py-2'>Add Your Review</p>
-                <textarea onChange={handleReviewChange} placeholder="Your review" name='review' className="w-full h-28 p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400  text-gray-900 border border-gray-600" required></textarea>
+                <p className='text-2xl font-semibold py-2'>Add Your Review</p>
+                <textarea 
+                onChange={handleReviewChange}
+                 placeholder="Your review" name='review' className="w-full h-28 p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400  text-gray-900 border border-gray-600" required></textarea>
             </div>
 
             <div className=''>
 
                 {
                     user ?
-                       
-                            <button onClick={addReview}
+
+                        <button 
+                        onClick={addReview}
                             className="btn btn-success">Add a review</button>
-                        
+
                         :
 
                         <Link to='/login'>
