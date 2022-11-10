@@ -22,7 +22,7 @@ const Services = () => {
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-10'>
                 {
                     services?.map(ser => <ServicesCart
-                        key={ser.services_id}
+                        key={ser._id}
                         ser={ser}
 
                     ></ServicesCart>)
