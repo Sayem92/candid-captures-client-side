@@ -6,6 +6,7 @@ import Login from "../../components/Form/Login";
 import Register from "../../components/Form/Register";
 import Home from "../../components/Home/Home/Home";
 import MyReviews from "../../components/MyReviews/MyReviews";
+import MyReviewUpdate from "../../components/MyReviews/MyReviewUpdate";
 import AllServices from "../../components/sheared/AllServices/AllServices";
 import Details from "../../components/sheared/Details/Details";
 import Main from "../../layout/Main";
@@ -54,6 +55,11 @@ export const routes = createBrowserRouter([
                 path: '/myReviews',
                 element: <PrivateRoutes><MyReviews></MyReviews></PrivateRoutes>
             },
+            {
+                path: '/myReviewUpdate/:id',
+                loader: ({params}) => fetch(`http://localhost:5000/myReviewUpdate/${params.id}`),
+                element: <MyReviewUpdate></MyReviewUpdate>
+            }
         ]
     }
 ])

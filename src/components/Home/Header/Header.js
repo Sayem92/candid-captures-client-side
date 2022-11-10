@@ -26,11 +26,11 @@ const Header = () => {
                     <div className="mb-16 lg:my-40 lg:max-w-lg lg:pr-5">
 
                         <h2 className="mb-5 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
-                            Everything you
+                            Welcome to 
                             <br className="hidden md:block" />
-                            can imagine{' '}
+                           my{' '}
                             <span className="inline-block text-orange-400">
-                                is real
+                                Candid Captures
                             </span>
                         </h2>
                         <p className="pr-5 mb-5 text-base text-gray-700 md:text-lg">
@@ -38,13 +38,13 @@ const Header = () => {
                         </p>
                         <div className="flex items-center">
                             <Link
-                               to="/"
+                               to="/allServices"
                                 className="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-sky-500 hover:bg-sky-600 focus:shadow-outline focus:outline-none"
                             >
                                 Get started
                             </Link>
                             <Link
-                                to="/"
+                                to="/blogs"
                                 aria-label=""
                                 className="inline-flex items-center font-semibold text-white transition-colors duration-200  h-12 px-6 bg-orange-300 rounded hover:bg-orange-400"
                             >

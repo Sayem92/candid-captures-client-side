@@ -111,7 +111,9 @@ const Details = () => {
 
             <div className='mt-4'>
 
-                {allReviews?.length === 0 ?
+                {
+                    allReviews?.length === 0 ?
+                    
                     <h1 className='text-3xl font-bold text-blue-500'>No review available</h1>
 
                     :
