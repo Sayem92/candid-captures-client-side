@@ -12,17 +12,26 @@ const MyReviews = () => {
     UseTitle('myReviews')
     const [reviewsDisplay, setReviewsDisplay] = useState([])
     const { user } = useContext(AuthContext);
+    const [load, setLoad] = useState(true)
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myReviews?email=${user?.email}`)
+        fetch(`https://assignment-11-server-candid-captures.vercel.app/myReviews?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log("my reviews all----", data);
                 setReviewsDisplay(data)
+                setLoad(false)
 
             })
     }, [user])
+
+    if (load) {
+        return <div className='lg:w-16 w-16  mx-auto  m-20'>
+            <div className=" w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-600"></div>
+        </div>
+
+    }
 
     //conditional reviews show--------- 
     if (reviewsDisplay.length === 0) {
@@ -33,7 +42,7 @@ const MyReviews = () => {
     const handleDelete = _id => {
         const agree = window.confirm("Are you want to delete this review!!")
         if (agree) {
-            fetch(`http://localhost:5000/myReviews/${_id}`, {
+            fetch(`https://assignment-11-server-candid-captures.vercel.app/myReviews/${_id}`, {
                 method: "DELETE",
             })
                 .then(res => res.json())

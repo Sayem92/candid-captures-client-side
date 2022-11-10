@@ -14,25 +14,25 @@ import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 export const routes = createBrowserRouter([
     {
         path: '/',
-        element : <Main></Main>,
+        element: <Main></Main>,
         errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
-                element : <Home></Home>
+                element: <Home></Home>
             },
             {
                 path: '/home',
-                element : <Home></Home>
+                element: <Home></Home>
             },
             {
                 path: '/allServices',
-                element : <AllServices></AllServices>
+                element: <AllServices></AllServices>
             },
             {
                 path: '/details/:id',
-                loader: ({params})=> fetch(`http://localhost:5000/details/${params.id}`),
-                element : <Details></Details>
+                loader: ({ params }) => fetch(`https://assignment-11-server-candid-captures.vercel.app/details/${params.id}`),
+                element: <Details></Details>
             },
             {
                 path: '/register',
@@ -48,7 +48,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/addService',
-                element:<PrivateRoutes> <AddService></AddService></PrivateRoutes>
+                element: <PrivateRoutes> <AddService></AddService></PrivateRoutes>
             },
             {
                 path: '/myReviews',

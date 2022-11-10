@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
-import {  Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import UseTitle from '../../UseTitle/UseTitle';
 import DisplayReview from '../DisplayReview/DisplayReview';
@@ -28,11 +28,11 @@ const Details = () => {
     }
 
 
-    // console.log(user);
+   
     // post review to mongodb---------------
     const addReview = () => {
 
-        if(user){
+        if (user) {
             const { displayName, email, photoURL } = user;
             const createReview = {
                 reviewId: _id,
@@ -40,11 +40,11 @@ const Details = () => {
                 photoURL,
                 email,
                 review,
-                serviceName : title
+                serviceName: title
             }
 
 
-            fetch('http://localhost:5000/addReview', {
+            fetch('https://assignment-11-server-candid-captures.vercel.app/addReview', {
                 method: "POST",
                 headers: {
                     "content-type": "application/json"
@@ -55,6 +55,11 @@ const Details = () => {
                 .then(data => {
                     toast.success('Add a new review successfully')
                     console.log("new review data", data);
+                    let updateReview = []
+                    if(data?.acknowledged){
+                        updateReview = [...allReviews, createReview]
+                        setAllReviews(updateReview)
+                    }
                 })
 
 
@@ -62,11 +67,11 @@ const Details = () => {
 
     }
 
-    // data update baki ---
+  
 
-       // get review mongodb--------------
-       useEffect(() => {
-        fetch(`http://localhost:5000/getReview/${_id}`)
+    // get review mongodb--------------
+    useEffect(() => {
+        fetch(`https://assignment-11-server-candid-captures.vercel.app/getReview/${_id}`)
             .then(res => res.json())
             .then(data => {
                 setAllReviews(data)
@@ -76,7 +81,7 @@ const Details = () => {
     }, []);
 
 
-   
+
 
 
     return (
@@ -100,33 +105,33 @@ const Details = () => {
                     </div>
                 </div>
             </div>
-            
+
 
             {/* all review  */}
-        
+
             <div className='mt-4'>
-               
-                { allReviews?.length === 0 ? 
-                     <h1 className='text-3xl font-bold text-blue-500'>No review available</h1>
-                   
+
+                {allReviews?.length === 0 ?
+                    <h1 className='text-3xl font-bold text-blue-500'>No review available</h1>
+
                     :
 
                     allReviews?.map(personReview => <DisplayReview
-                        key={personReview?._id}
+                        key={Math.random()*10}
                         personReview={personReview}
-                        
-                        ></DisplayReview> )
+
+                    ></DisplayReview>)
                 }
-                
-               
+
+
             </div>
 
             {/* add review textarea  */}
             <div className='lg:w-96 mt-4'>
                 <p className='text-2xl font-semibold py-2'>Add Your Review</p>
-                <textarea 
-                onChange={handleReviewChange}
-                 placeholder="Your review" name='review' className="w-full h-28 p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400  text-gray-900 border border-gray-600" required></textarea>
+                <textarea
+                    onChange={handleReviewChange}
+                    placeholder="Your review" name='review' className="w-full h-28 p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400  text-gray-900 border border-gray-600" required></textarea>
             </div>
 
             <div className=''>
@@ -134,8 +139,8 @@ const Details = () => {
                 {
                     user ?
 
-                        <button 
-                        onClick={addReview}
+                        <button
+                            onClick={addReview}
                             className="btn btn-success">Add a review</button>
 
                         :
@@ -143,7 +148,7 @@ const Details = () => {
                         <Link to='/login'>
                             <button className="btn btn-warning">Please login to add a review</button>
                         </Link>
-                        
+
                 }
 
 

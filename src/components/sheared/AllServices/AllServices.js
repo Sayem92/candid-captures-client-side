@@ -6,22 +6,22 @@ const AllServices = () => {
     UseTitle('allServices')
     const [servicesAll, setServicesAll,] = useState([])
     const [load, setLoad] = useState(true)
-    
+
 
     useEffect(() => {
-        fetch('http://localhost:5000/allServices')
+        fetch('https://assignment-11-server-candid-captures.vercel.app/allServices')
             .then(res => res.json())
             .then(data => {
                 setServicesAll(data)
-               setLoad(false)
+                setLoad(false)
             })
     }, [])
 
-    if(load){
-       return <div className='lg:w-16 w-16  mx-auto  m-20'>
-       <div className=" w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-600"></div>
-      </div>
-       
+    if (load) {
+        return <div className='lg:w-16 w-16  mx-auto  m-20'>
+            <div className=" w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-600"></div>
+        </div>
+
     }
 
     return (

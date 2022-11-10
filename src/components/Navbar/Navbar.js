@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import {  NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
@@ -10,6 +10,11 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+
+  let activeStyle = {
+    textDecoration: "underline",
+    color : 'green'
+  };
 
   const handleLogOut = () => {
     logOut()
@@ -26,7 +31,7 @@ const Navbar = () => {
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
           <div className="flex items-center">
-            <Link
+            <NavLink
               to="/"
               aria-label="Candid Captures"
               title="Candid Captures"
@@ -37,52 +42,64 @@ const Navbar = () => {
               <span className="ml-2 text-xl text-blue-500 font-bold tracking-wide  uppercase">
                 Candid Captures
               </span>
-            </Link>
+            </NavLink>
             <ul className="flex items-center hidden space-x-8 lg:flex">
               <li>
-                <Link
+                <NavLink
+                style={({ isActive }) =>
+                isActive ? activeStyle : undefined
+              }
                   to="/home"
                   aria-label="Home"
                   title="Home"
                   className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
                 >
                   Home
-                </Link>
+                </NavLink>
               </li>
               {
                 user &&
                 <>
                   <li>
-                    <Link
+                    <NavLink
+                    style={({ isActive }) =>
+                    isActive ? activeStyle : undefined
+                  }
                       to="/addService"
                       aria-label="Add Services"
                       title="Add Services"
                       className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
                     >
                       Add Services
-                    </Link>
+                    </NavLink>
                   </li>
                   <li>
-                    <Link
+                    <NavLink
+                    style={({ isActive }) =>
+                    isActive ? activeStyle : undefined
+                  }
                       to="/myReviews"
                       aria-label="My Review"
                       title="My Review"
                       className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
                     >
                       My Review
-                    </Link>
+                    </NavLink>
                   </li>
                 </>
               }
               <li>
-                <Link
+                <NavLink
+                style={({ isActive }) =>
+                isActive ? activeStyle : undefined
+              }
                   to="/blogs"
                   aria-label="Blogs"
                   title="Blogs"
                   className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
                 >
                   Blogs
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -105,14 +122,14 @@ const Navbar = () => {
               :
 
               <li>
-                <Link
+                <NavLink
                   to="/register"
                   className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 bg-sky-400 hover:bg-sky-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                   aria-label="Sign up"
                   title="Sign up"
                 >
                   Sign up
-                </Link>
+                </NavLink>
               </li>
 
             }
@@ -145,7 +162,7 @@ const Navbar = () => {
                 <div className="p-5 bg-white border rounded shadow-sm">
                   <div className="flex items-center justify-between mb-4">
                     <div>
-                      <Link
+                      <NavLink
                         to="/"
                         aria-label="Candid Captures"
                         title="Candid Captures"
@@ -157,7 +174,7 @@ const Navbar = () => {
                         <span className="ml-2 text-xl font-bold tracking-wide text-blue-500 uppercase">
                           Candid Captures
                         </span>
-                      </Link>
+                      </NavLink>
                     </div>
                     <div>
                       <button
@@ -178,14 +195,17 @@ const Navbar = () => {
                   <nav>
                     <ul className="space-y-4">
                       <li>
-                        <Link
+                        <NavLink
+                        style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
                           to="/home"
                           aria-label="Home"
                           title="Home"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
                           Home
-                        </Link>
+                        </NavLink>
                       </li>
 
                       {
@@ -193,37 +213,46 @@ const Navbar = () => {
                         <>
 
                           <li>
-                            <Link
+                            <NavLink
+                            style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                          }
                               to="/addService"
                               aria-label="Add Services"
                               title="Add Services"
                               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                             >
                               Add Services
-                            </Link>
+                            </NavLink>
                           </li>
                           <li>
-                            <Link
+                            <NavLink
+                            style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                          }
                               to="/myReviews"
                               aria-label="My Review"
                               title="My Review"
                               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                             >
                               My Review
-                            </Link>
+                            </NavLink>
                           </li>
                         </>
                       }
 
                       <li>
-                        <Link
+                        <NavLink
+                        style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
                           to="/blogs"
                           aria-label="Blogs"
                           title="Blogs"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
                           Blogs
-                        </Link>
+                        </NavLink>
                       </li>
 
                       {
@@ -243,14 +272,14 @@ const Navbar = () => {
                           :
 
                           <li>
-                            <Link
+                            <NavLink
                               to="/register"
                               className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 bg-sky-400 hover:bg-sky-500 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                               aria-label="Sign up"
                               title="Sign up"
                             >
                               Sign up
-                            </Link>
+                            </NavLink>
                           </li>
                       }
 
