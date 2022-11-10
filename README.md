@@ -1,6 +1,40 @@
-# Getting Started with Create React App
+## App Name 
+🤳🤳 Candid Captures 📸📸
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Live Site Client
+[]
+
+## Code Link Client
+[https://github.com/Porgramming-Hero-web-course/b6a11-service-review-client-side-Sayem92]
+
+## Code Link Server
+[https://github.com/Porgramming-Hero-web-course/b6a11-service-review-server-side-Sayem92]
+
+
+## key features
+✔ Show all services.
+✔ Post your review.
+✔ To know about services.
+✔ No hassels of loading.
+✔ Save bandwidth.
+✔ Track your progress on statistics section.
+✔ Read blog on desire topic everyday.
+✔ Free of coast.
+
+
+## Dependency used in this project
+1. [tailwind css library](https://tailwindcss.com/docs/installation).
+2. [Mamba UI](https://www.mambaui.com/components).
+3. [Kitwind  Kometa UI](https://kitwind.io/products/kometa/components/).
+4. [Daisy ui](https://daisyui.com/).
+5. [Flow bite](https://flowbite.com/).
+6. [Create React App](https://github.com/facebook/create-react-app).
+7. [React Router Dom](https://reactrouter.com/en/main).
+8. [Firebase](https://firebase.google.com/).
+9. [React-hot-toast](https://react-hot-toast.com/).
+10. [React icon](https://react-icons.github.io/react-icons/).
+11. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+12. [React-photo-view](https://www.npmjs.com/package/react-photo-view)
 
 ## Available Scripts
 
