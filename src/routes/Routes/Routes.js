@@ -9,6 +9,7 @@ import MyReviews from "../../components/MyReviews/MyReviews";
 import AllServices from "../../components/sheared/AllServices/AllServices";
 import Details from "../../components/sheared/Details/Details";
 import Main from "../../layout/Main";
+import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 export const routes = createBrowserRouter([
     {
@@ -47,11 +48,11 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/addService',
-                element: <AddService></AddService>
+                element:<PrivateRoutes> <AddService></AddService></PrivateRoutes>
             },
             {
                 path: '/myReviews',
-                element: <MyReviews></MyReviews>
+                element: <PrivateRoutes><MyReviews></MyReviews></PrivateRoutes>
             },
         ]
     }

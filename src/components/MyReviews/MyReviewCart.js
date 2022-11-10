@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MyReviewCart = ({info}) => {
+const MyReviewCart = ({info, handleDelete}) => {
     const { serviceName, email, review, _id } = info;
 
     return (
@@ -12,8 +12,9 @@ const MyReviewCart = ({info}) => {
                     <p className='mb-6 mt-2 text-sm text-gray-400'>Email: {email}</p>
 
                     <button className="btn btn-sm btn-primary mr-5">Edit</button>
-                    
-                    <button className="btn btn-sm btn-error">Delete</button>
+
+                    <button onClick={()=> handleDelete(_id)}
+                    className="btn btn-sm btn-error">Delete</button>
                 </div>
                
     );

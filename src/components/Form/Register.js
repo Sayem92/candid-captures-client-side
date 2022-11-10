@@ -1,12 +1,14 @@
 import React from 'react';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import google from '../../assets/Google.png'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
-    const { createUser, updateName, googleSignIn } = useContext(AuthContext)
+    const { createUser, updateName, googleSignIn } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -24,6 +26,7 @@ const Register = () => {
                 toast.success('Create account successfully')
                 form.reset()
                 userNameProfileUpdate(name, photoURL);
+                navigate('/') 
 
             })
             .then(error => console.log(error))
@@ -48,7 +51,8 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast.success('Google login successfully')
+                toast.success('Google login successfully');
+                navigate('/') 
             })
             .catch(err => console.log(err));
     }

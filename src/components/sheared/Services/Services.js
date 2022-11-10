@@ -5,13 +5,24 @@ import { Link } from 'react-router-dom';
 import ServicesCart from './ServicesCart';
 
 const Services = () => {
-    const [services, setServices] = useState([])
+    const [services, setServices] = useState([]);
+    const [load, setLoad] = useState(true)
 
     useEffect(() => {
         fetch('http://localhost:5000/services')
             .then(res => res.json())
-            .then(data => setServices(data))
+            .then(data => {
+                setServices(data)
+                setLoad(false)
+            })
     }, [])
+
+    if(load){
+        return <div className='lg:w-16 w-16  mx-auto  m-20'>
+        <div className=" w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-600"></div>
+       </div>
+        
+     }
 
 
     return (

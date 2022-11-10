@@ -2,13 +2,25 @@ import React, { useEffect, useState } from 'react';
 import ServicesCart from '../Services/ServicesCart';
 
 const AllServices = () => {
-    const [servicesAll, setServicesAll] = useState([])
+    const [servicesAll, setServicesAll,] = useState([])
+    const [load, setLoad] = useState(true)
+    
 
     useEffect(() => {
         fetch('http://localhost:5000/allServices')
             .then(res => res.json())
-            .then(data => setServicesAll(data))
+            .then(data => {
+                setServicesAll(data)
+               setLoad(false)
+            })
     }, [])
+
+    if(load){
+       return <div className='lg:w-16 w-16  mx-auto  m-20'>
+       <div className=" w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-600"></div>
+      </div>
+       
+    }
 
     return (
         <div className='p-2 lg:mx-20 mb-20'>
@@ -16,7 +28,7 @@ const AllServices = () => {
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-10 mt-20'>
                 {
                     servicesAll?.map(ser => <ServicesCart
-                        key={ser.services_id}
+                        key={ser._id}
                         ser={ser}
 
                     ></ServicesCart>)

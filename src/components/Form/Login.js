@@ -1,12 +1,14 @@
 import React from 'react';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import google from '../../assets/Google.png'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const { login, googleSignIn } = useContext(AuthContext)
+    const { login, googleSignIn } = useContext(AuthContext);
+
+    const navigate = useNavigate()
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -20,7 +22,8 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('login successfully');
-                form.reset();
+                form.reset();  
+                navigate('/')          
 
             })
             .catch(err => {
@@ -37,7 +40,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('Google login successfully');
-
+                navigate('/') 
             })
             .catch(err => console.log(err))
     }

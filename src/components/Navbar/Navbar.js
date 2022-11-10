@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Navbar = () => {
 
   const { user, logOut } = useContext(AuthContext);
-  // console.log(user);
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogOut = () => {
     logOut()
       .then(() => {
         toast.success('logout successfully')
+        navigate('/')
       })
       .catch(err => console.log(err))
   }
