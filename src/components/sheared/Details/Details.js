@@ -7,10 +7,12 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import {  Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import UseTitle from '../../UseTitle/UseTitle';
 import DisplayReview from '../DisplayReview/DisplayReview';
 
 
 const Details = () => {
+    UseTitle('details')
     // get mongo db review-------------
     const [allReviews, setAllReviews] = useState([]);
     // review text------

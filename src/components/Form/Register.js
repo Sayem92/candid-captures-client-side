@@ -4,8 +4,10 @@ import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import google from '../../assets/Google.png'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import UseTitle from '../UseTitle/UseTitle';
 
 const Register = () => {
+    UseTitle('sign up')
     const { createUser, updateName, googleSignIn } = useContext(AuthContext);
 
     const navigate = useNavigate();

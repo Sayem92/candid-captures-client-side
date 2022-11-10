@@ -4,8 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import google from '../../assets/Google.png'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import UseTitle from '../UseTitle/UseTitle';
 
 const Login = () => {
+    UseTitle('login')
     const { login, googleSignIn } = useContext(AuthContext);
 
     const navigate = useNavigate()
