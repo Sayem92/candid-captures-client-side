@@ -1,7 +1,9 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import UseTitle from '../UseTitle/UseTitle';
 
 const MyReviewUpdate = () => {
+    UseTitle('myReviewUpdate')
     const reviewUpdate = useLoaderData();
     // console.log(review);
     const { _id, serviceName, review, email } = reviewUpdate;

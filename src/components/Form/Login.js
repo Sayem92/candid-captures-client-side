@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import google from '../../assets/Google.png'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import UseTitle from '../UseTitle/UseTitle';
+import { setAuthToken } from '../../api/AuthToken';
 
 const Login = () => {
     UseTitle('login')
@@ -24,8 +25,31 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('login successfully');
-                form.reset();  
-                navigate('/')          
+
+                const currentUser = {
+                    email: user.email
+                }
+
+                // get jwt create----------------------------------
+                fetch('https://genius-car-server-ten.vercel.app/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': "application/json"
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        // local storage is easiest but not the best for safe jwt token
+                        localStorage.setItem('candid-token', data.token)
+
+                        form.reset();
+                        navigate('/')
+
+                    })
+
+
 
             })
             .catch(err => {
@@ -41,8 +65,10 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                 //jwt-------------
+                 setAuthToken(user)
                 toast.success('Google login successfully');
-                navigate('/') 
+                navigate('/')
             })
             .catch(err => console.log(err))
     }

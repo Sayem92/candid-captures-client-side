@@ -11,13 +11,22 @@ import MyReviewCart from './MyReviewCart';
 const MyReviews = () => {
     UseTitle('myReviews')
     const [reviewsDisplay, setReviewsDisplay] = useState([])
-    const { user } = useContext(AuthContext);
+    const { user,logOut } = useContext(AuthContext);
     const [load, setLoad] = useState(true)
 
 
     useEffect(() => {
-        fetch(`https://assignment-11-server-candid-captures.vercel.app/myReviews?email=${user?.email}`)
-            .then(res => res.json())
+        fetch(`https://assignment-11-server-candid-captures.vercel.app/myReviews?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('genius-token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOut();
+                }
+                return res.json();
+            })
             .then(data => {
                 console.log("my reviews all----", data);
                 setReviewsDisplay(data)
@@ -57,7 +66,7 @@ const MyReviews = () => {
         }
     }
 
-    
+
 
     return (
         <div className='p-2 lg:m-10'>
