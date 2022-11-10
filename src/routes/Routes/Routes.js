@@ -5,6 +5,7 @@ import ErrorPage from "../../components/ErrorPage/ErrorPage";
 import Login from "../../components/Form/Login";
 import Register from "../../components/Form/Register";
 import Home from "../../components/Home/Home/Home";
+import MyReviews from "../../components/MyReviews/MyReviews";
 import AllServices from "../../components/sheared/AllServices/AllServices";
 import Details from "../../components/sheared/Details/Details";
 import Main from "../../layout/Main";
@@ -47,6 +48,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/addService',
                 element: <AddService></AddService>
+            },
+            {
+                path: '/myReviews',
+                element: <MyReviews></MyReviews>
             },
         ]
     }

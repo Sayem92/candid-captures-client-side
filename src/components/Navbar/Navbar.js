@@ -54,7 +54,7 @@ const Navbar = () => {
                 <>
                   <li>
                     <Link
-                      to="/"
+                      to="/addService"
                       aria-label="Add Services"
                       title="Add Services"
                       className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
@@ -64,7 +64,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <Link
-                      to="/"
+                      to="/myReviews"
                       aria-label="My Review"
                       title="My Review"
                       className="font-medium tracking-wide text-black transition-colors duration-200 hover:text-teal-accent-400"
@@ -194,7 +194,7 @@ const Navbar = () => {
 
                           <li>
                             <Link
-                              to="/"
+                              to="/addService"
                               aria-label="Add Services"
                               title="Add Services"
                               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -204,7 +204,7 @@ const Navbar = () => {
                           </li>
                           <li>
                             <Link
-                              to="/"
+                              to="/myReviews"
                               aria-label="My Review"
                               title="My Review"
                               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"

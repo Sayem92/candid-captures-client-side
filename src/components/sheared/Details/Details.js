@@ -37,7 +37,8 @@ const Details = () => {
                 reviewerName: displayName,
                 photoURL,
                 email,
-                review
+                review,
+                serviceName : title
             }
 
 
