@@ -1,0 +1,69 @@
+[debug] [2022-11-10T15:25:51.793Z] ----------------------------------------------------------------------
+[debug] [2022-11-10T15:25:51.795Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\FC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2022-11-10T15:25:51.796Z] CLI Version:   11.16.0
+[debug] [2022-11-10T15:25:51.796Z] Platform:      win32
+[debug] [2022-11-10T15:25:51.796Z] Node Version:  v16.15.1
+[debug] [2022-11-10T15:25:51.797Z] Time:          Thu Nov 10 2022 21:25:51 GMT+0600 (Bangladesh Standard Time)
+[debug] [2022-11-10T15:25:51.797Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-11-10T15:25:51.872Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-11-10T15:25:51.872Z] > authorizing via signed-in user (sayemmiha123@gmail.com)
+[debug] [2022-11-10T15:25:51.873Z] [iam] checking project candid-captures for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-11-10T15:25:51.875Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/candid-captures:testIamPermissions [none]
+[debug] [2022-11-10T15:25:51.876Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/candid-captures:testIamPermissions x-goog-quota-user=projects/candid-captures
+[debug] [2022-11-10T15:25:51.876Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/candid-captures:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-11-10T15:25:57.333Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/candid-captures:testIamPermissions 200
+[debug] [2022-11-10T15:25:57.333Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/candid-captures:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-11-10T15:25:57.334Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/candid-captures [none]
+[debug] [2022-11-10T15:25:59.003Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/candid-captures 200
+[debug] [2022-11-10T15:25:59.003Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/candid-captures {"projectId":"candid-captures","projectNumber":"786610538210","displayName":"Candid Captures","name":"projects/candid-captures","resources":{"hostingSite":"candid-captures"},"state":"ACTIVE","etag":"1_3ff26f01-9b46-4f9a-a5d2-bf989bacfd4a"}
+[info] 
+[info] === Deploying to 'candid-captures'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2022-11-10T15:25:59.011Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/candid-captures/versions [none]
+[debug] [2022-11-10T15:25:59.011Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/candid-captures/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2022-11-10T15:26:01.475Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/candid-captures/versions 200
+[debug] [2022-11-10T15:26:01.475Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/candid-captures/versions {"name":"projects/786610538210/sites/candid-captures/versions/e1db7dac917c6d3e","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[candid-captures]: beginning deploy... 
+[info] i  hosting[candid-captures]: found 18 files in build 
+[debug] [2022-11-10T15:26:01.487Z] [hosting] uploading with 200 concurrency
+[debug] [2022-11-10T15:26:01.720Z] [hosting] hash cache [YnVpbGQ] stored for 18 files
+[debug] [2022-11-10T15:26:01.720Z] [hosting][hash queue][FINAL] {"max":225,"min":3,"avg":21.055555555555557,"active":0,"complete":18,"success":18,"errored":0,"retried":0,"total":18,"elapsed":230}
+[debug] [2022-11-10T15:26:01.721Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/786610538210/sites/candid-captures/versions/e1db7dac917c6d3e:populateFiles [none]
+[debug] [2022-11-10T15:26:01.721Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/786610538210/sites/candid-captures/versions/e1db7dac917c6d3e:populateFiles {"files":{"/favicon.ico":"eae62e993eb980ec8a25058c39d5a51feab118bd2100c4deebb2a9c158ec11f9","/favicon.png":"6acb7d7964dd51019996bc190459c302401189c7f1d483b68a58c90c82816a78","/logo192.png":"3ee59515172ee198f3be375979df15ac5345183e656720a381b8872b2a39dc8b","/logo512.png":"ee7e2f3fdb8209c4b6fd7bef6ba50d1b9dba30a25bb5c3126df057e1cb6f5331","/manifest.json":"aff3449bdc238776f5d6d967f19ec491b36aed5fb7f23ccff6500736fd58494a","/robots.txt":"bfe106a3fb878dc83461c86818bf74fc1bdc7f28538ba613cd3e775516ce8b49","/asset-manifest.json":"cc842c6b080f920257b8eccb6637ef9ce5287069665fffff39ff0b2a4339a2ae","/index.html":"03f119ce22f308043792e3c9eada0aa938178f617c2dd07c17ddcf9a74ee24ba","/static/js/787.28cb0dcd.chunk.js":"b72129aadef2b1cce5f847b935b4b58bca879c736479ede4c4e80bccf03f82a0","/static/js/787.28cb0dcd.chunk.js.map":"7f861e631c0bfc95128bc71fc8bd95a1dbdfe31dc0d8d063e60464968cf1c800","/static/js/main.12d94c39.js.LICENSE.txt":"29fba471d481398619ffd50250e8431add61c7c8208f77fc9b05cd1bf9708876","/static/media/Google.18786f04dc917900af5c.png":"5ff852d8e4b0c2270ad5fac3c5d6891dc98c13c932ceddce0952a965e2d59c1b","/static/css/main.bcd76352.css":"8839ae27af712bd791135188aa6b54bac98484b050a464842fb748b8624b0afd","/static/css/main.bcd76352.css.map":"e721b83af1baf3117eadce55badceb3feba379e7d63998ab29cbee6c70ea6ef1","/static/media/logo.aa5959000a94130bf37d.png":"6acb7d7964dd51019996bc190459c302401189c7f1d483b68a58c90c82816a78","/static/media/header.71451da5cc9a0e68ffe9.jpg":"de2432ea52dad0a4217c1d19237768a11314b854cac22f323698dd72a0edd51d","/static/js/main.12d94c39.js":"6e73976557c1eb8b65f400e2ce2d075a4d67deb84a676bce88f24f12f1167d89","/static/js/main.12d94c39.js.map":"7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62"}}
+[debug] [2022-11-10T15:26:05.524Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/786610538210/sites/candid-captures/versions/e1db7dac917c6d3e:populateFiles 200
+[debug] [2022-11-10T15:26:05.524Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/786610538210/sites/candid-captures/versions/e1db7dac917c6d3e:populateFiles {"uploadRequiredHashes":["7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/candid-captures/versions/e1db7dac917c6d3e/files"}
+[debug] [2022-11-10T15:26:05.524Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/candid-captures/versions/e1db7dac917c6d3e/files/7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62 [none]
+[debug] [2022-11-10T15:26:05.525Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/candid-captures/versions/e1db7dac917c6d3e/files/7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62 [stream]
+[debug] [2022-11-10T15:26:05.525Z] [hosting][populate queue][FINAL] {"max":3805,"min":3805,"avg":3805,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":3806}
+[debug] [2022-11-10T15:26:05.525Z] [hosting] uploads queued: 1
+[debug] [2022-11-10T15:26:39.341Z] [uploadQueue] Retrying task 7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62
+[debug] [2022-11-10T15:26:39.342Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/candid-captures/versions/e1db7dac917c6d3e/files/7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62 [none]
+[debug] [2022-11-10T15:26:39.342Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/candid-captures/versions/e1db7dac917c6d3e/files/7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62 [stream]
+[debug] [2022-11-10T15:27:13.565Z] [uploadQueue] Retrying task 7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62
+[debug] [2022-11-10T15:27:13.565Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/candid-captures/versions/e1db7dac917c6d3e/files/7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62 [none]
+[debug] [2022-11-10T15:27:13.566Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/candid-captures/versions/e1db7dac917c6d3e/files/7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62 [stream]
+[debug] [2022-11-10T15:27:48.585Z] [uploadQueue] Retrying task 7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62
+[debug] [2022-11-10T15:27:48.586Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/candid-captures/versions/e1db7dac917c6d3e/files/7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62 [none]
+[debug] [2022-11-10T15:27:48.586Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/candid-captures/versions/e1db7dac917c6d3e/files/7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62 [stream]
+[debug] [2022-11-10T15:28:25.195Z] [uploadQueue] Retrying task 7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62
+[debug] [2022-11-10T15:28:25.196Z] > refreshing access token with scopes: []
+[debug] [2022-11-10T15:28:25.197Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2022-11-10T15:28:25.197Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-11-10T15:28:44.412Z] [uploadQueue] Retrying task 7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62
+[debug] [2022-11-10T15:28:44.413Z] > refreshing access token with scopes: []
+[debug] [2022-11-10T15:28:44.413Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2022-11-10T15:28:44.413Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-11-10T15:28:46.016Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2022-11-10T15:28:46.017Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-11-10T15:28:46.027Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/candid-captures/versions/e1db7dac917c6d3e/files/7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62 [none]
+[debug] [2022-11-10T15:28:46.027Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/candid-captures/versions/e1db7dac917c6d3e/files/7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62 [stream]
+[debug] Task 7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62 failed: retries exhausted after 6 attempts, with error: Timeout reached making request to https://upload-firebasehosting.googleapis.com/upload/sites/candid-captures/versions/e1db7dac917c6d3e/files/7488ef4bd218b27eee024399c7eeaa989157236ee72af832aaaf212fbedf1f62
+[debug] [2022-11-10T15:29:17.820Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":1,"success":0,"errored":1,"retried":5,"total":1,"elapsed":192296}
+[debug] [2022-11-10T15:29:22.838Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\FC\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:253:49)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)
+[error] 
+[error] Error: An unexpected error has occurred.

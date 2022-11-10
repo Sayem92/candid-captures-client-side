@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const MyReviewCart = ({info, handleDelete}) => {
+    
     const { serviceName, email, review, _id } = info;
 
     return (

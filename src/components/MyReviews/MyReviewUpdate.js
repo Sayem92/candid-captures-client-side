@@ -1,11 +1,13 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import UseTitle from '../UseTitle/UseTitle';
 
 const MyReviewUpdate = () => {
     UseTitle('myReviewUpdate')
     const reviewUpdate = useLoaderData();
-    // console.log(review);
+
+    const navigate = useNavigate()
     const { _id, serviceName, review, email } = reviewUpdate;
 
 
@@ -13,26 +15,28 @@ const MyReviewUpdate = () => {
     const handleUpdate = e => {
         e.preventDefault()
         const form = e.target;
-        const newReview = form.newReview.value;
+        const review= form.newReview.value;
+        
+        const single ={
+            review : review
+        }
 
-        console.log(newReview, _id);
-        // const single ={
-        //     newReview
-        // }
 
-        // fetch(`http://localhost:5000/updateSingleReview/${_id}`, {
-        //     method: "PUT",
-        //     headers:{
-        //         "content-type": "application/json"
-        //     },
-        //     body: JSON.stringify({newReview})
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         toast.success('Update successfully!!!!!!')
-        //         console.log(data);
+        fetch(`http://localhost:5000/updateSingleReview/${_id}`, {
+            method: "PUT",
+            headers:{
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(single)
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success('Update successfully!!!!!!')
+                console.log(data);
+                form.reset();
+                navigate('/myReviews')
 
-        //     })
+            })
 
     }
 
@@ -50,15 +54,15 @@ const MyReviewUpdate = () => {
                     className="space-y-12 ng-untouched ng-pristine ng-valid">
                     <div className="space-y-4">
                         <div>
-                            <label for="email" className="block mb-2 text-sm">Service Name</label>
+                            <label htmlFor="email" className="block mb-2 text-sm">Service Name</label>
                             <input type="text" defaultValue={serviceName} readOnly className="w-full px-3 py-2 border rounded-md border-gray-700 bg-gray-900 text-gray-100" />
                         </div>
                         <div>
-                            <label for="text" className="block mb-2 text-sm">Edit Review</label>
+                            <label htmlFor="text" className="block mb-2 text-sm">Edit Review</label>
                             <input type="text" name='newReview' defaultValue={review} className="w-full px-3 py-2 border rounded-md border-gray-700 bg-gray-900 text-gray-100" required />
                         </div>
                         <div>
-                            <label for="email" className="block mb-2 text-sm">Email address</label>
+                            <label htmlFor="email" className="block mb-2 text-sm">Email address</label>
                             <input type="email" defaultValue={email} readOnly className="w-full px-3 py-2 border rounded-md border-gray-700 bg-gray-900 text-gray-100" />
                         </div>
 

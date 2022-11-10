@@ -10,23 +10,15 @@ import MyReviewCart from './MyReviewCart';
 
 const MyReviews = () => {
     UseTitle('myReviews')
-    const [reviewsDisplay, setReviewsDisplay] = useState([])
-    const { user,logOut } = useContext(AuthContext);
     const [load, setLoad] = useState(true)
+    const [reviewsDisplay, setReviewsDisplay] = useState([])
+    const { user } = useContext(AuthContext);
 
 
     useEffect(() => {
-        fetch(`https://assignment-11-server-candid-captures.vercel.app/myReviews?email=${user?.email}`, {
-            headers: {
-                authorization: `Bearer ${localStorage.getItem('genius-token')}`
-            }
-        })
-            .then(res => {
-                if (res.status === 401 || res.status === 403) {
-                    return logOut();
-                }
-                return res.json();
-            })
+
+        fetch(`http://localhost:5000/myReviews?email=${user?.email}`)
+            .then(res => res.json())
             .then(data => {
                 console.log("my reviews all----", data);
                 setReviewsDisplay(data)
@@ -36,15 +28,15 @@ const MyReviews = () => {
     }, [user])
 
     if (load) {
-        return <div className='lg:w-16 w-16  mx-auto  m-20'>
+        return (<div className='lg:w-16 w-16  mx-auto  m-20'>
             <div className=" w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-600"></div>
-        </div>
+        </div>)
 
     }
 
     //conditional reviews show--------- 
     if (reviewsDisplay.length === 0) {
-        return <h1 className='text-3xl text-center font-bold my-10'>No reviews were added</h1>
+        return (<h1 className='text-3xl text-center font-bold my-10'>No reviews were added</h1>)
     }
 
 
@@ -70,14 +62,16 @@ const MyReviews = () => {
 
     return (
         <div className='p-2 lg:m-10'>
-
+         
+                
             {
                 reviewsDisplay?.map(info => <MyReviewCart
-                    key={info._id}
+                    key={Math.random()*10}
                     info={info}
                     handleDelete={handleDelete}
                 ></MyReviewCart>)
             }
+            
 
         </div>
 
