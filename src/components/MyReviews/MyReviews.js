@@ -61,10 +61,11 @@ const MyReviews = () => {
 
 
     return (
-        <div className='p-2 lg:m-10'>
+        <div className='p-2 my-5 mr-1 lg:m-10'>
          
-                
-            {
+          <div>
+                  
+          {
                 reviewsDisplay?.map(info => <MyReviewCart
                     key={Math.random()*10}
                     info={info}
@@ -72,6 +73,7 @@ const MyReviews = () => {
                 ></MyReviewCart>)
             }
             
+          </div>
 
         </div>
 

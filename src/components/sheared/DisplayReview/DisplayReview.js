@@ -24,7 +24,7 @@ const DisplayReview = ({personReview}) => {
                         </div>
                     </div>
                     <div className="p-4 space-y-2 text-sm text-gray-400">
-                        <p>{review}</p>
+                        {review}
                         
                     </div>
                 </div>

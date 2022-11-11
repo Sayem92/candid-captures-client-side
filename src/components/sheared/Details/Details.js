@@ -16,7 +16,7 @@ const Details = () => {
     // get mongo db review-------------
     const [allReviews, setAllReviews] = useState([]);
     // review text------
-    const [review, setReview] = useState('');
+    const [review, setReview] = useState(null);
     const { user } = useContext(AuthContext);
     // single service details------------
     const serDetails = useLoaderData();
@@ -24,13 +24,19 @@ const Details = () => {
 
     // collect review text------
     const handleReviewChange = e => {
-        setReview(e.target.value);
+        const get = e.target.value;
+    
+        setReview(get);
     }
 
 
    
     // post review to mongodb---------------
     const addReview = () => {
+
+        if(review === null){
+            return
+        }
 
         if (user) {
             const { displayName, email, photoURL } = user;
@@ -85,7 +91,7 @@ const Details = () => {
 
 
     return (
-        <div className='p-2 lg:m-20 mb-10'>
+        <div className='p-2 lg:m-20 mb-10 mr-1'>
             <div>
                 <div className=" bg-white rounded-lg border  shadow-md  border-gray-300">
                     <PhotoProvider
@@ -133,7 +139,8 @@ const Details = () => {
                 <p className='text-2xl font-semibold py-2'>Add Your Review</p>
                 <textarea
                     onChange={handleReviewChange}
-                    placeholder="Your review" name='review' className="w-full h-28 p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400  text-gray-900 border border-gray-600" required></textarea>
+                    placeholder="Your review" 
+                    name='review' className="w-full h-28 p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400  text-gray-900 border border-gray-600" required></textarea>
             </div>
 
             <div className=''>
