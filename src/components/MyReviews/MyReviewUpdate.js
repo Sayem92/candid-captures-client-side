@@ -15,16 +15,16 @@ const MyReviewUpdate = () => {
     const handleUpdate = e => {
         e.preventDefault()
         const form = e.target;
-        const review= form.newReview.value;
-        
-        const single ={
-            review : review
+        const review = form.newReview.value;
+
+        const single = {
+            review: review
         }
 
 
-        fetch(`http://localhost:5000/updateSingleReview/${_id}`, {
+        fetch(`https://assignment-11-server-candid-captures.vercel.app/updateSingleReview/${_id}`, {
             method: "PUT",
-            headers:{
+            headers: {
                 "content-type": "application/json"
             },
             body: JSON.stringify(single)

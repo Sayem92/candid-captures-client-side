@@ -57,7 +57,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/myReviewUpdate/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/myReviewUpdate/${params.id}`),
+                loader: ({ params }) => fetch(`https://assignment-11-server-candid-captures.vercel.app/myReviewUpdate/${params.id}`),
                 element: <PrivateRoutes><MyReviewUpdate></MyReviewUpdate></PrivateRoutes>
             }
         ]

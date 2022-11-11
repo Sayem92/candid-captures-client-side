@@ -17,7 +17,7 @@ const MyReviews = () => {
 
     useEffect(() => {
 
-        fetch(`http://localhost:5000/myReviews?email=${user?.email}`)
+        fetch(`https://assignment-11-server-candid-captures.vercel.app/myReviews?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log("my reviews all----", data);
@@ -62,18 +62,18 @@ const MyReviews = () => {
 
     return (
         <div className='p-2 my-5 mr-1 lg:m-10'>
-         
-          <div>
-                  
-          {
-                reviewsDisplay?.map(info => <MyReviewCart
-                    key={Math.random()*10}
-                    info={info}
-                    handleDelete={handleDelete}
-                ></MyReviewCart>)
-            }
-            
-          </div>
+
+            <div>
+
+                {
+                    reviewsDisplay?.map(info => <MyReviewCart
+                        key={Math.random() * 10}
+                        info={info}
+                        handleDelete={handleDelete}
+                    ></MyReviewCart>)
+                }
+
+            </div>
 
         </div>
 
