@@ -2,7 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
-// import { setAuthToken } from '../../api/AuthToken';
+import { setAuthToken } from '../../api/AuthToken';
 import google from '../../assets/Google.png'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import UseTitle from '../UseTitle/UseTitle';
@@ -30,7 +30,7 @@ const Register = () => {
                 form.reset()
                 userNameProfileUpdate(name, photoURL);
                 // //jwt-------------
-                // setAuthToken(user)
+                setAuthToken(user)
                 navigate('/') 
 
             })
@@ -58,7 +58,7 @@ const Register = () => {
                 console.log(user);
                 toast.success('Google login successfully');
                 //  //jwt-------------
-                //  setAuthToken(user)
+                 setAuthToken(user)
                 navigate('/') 
             })
             .catch(err => console.log(err));

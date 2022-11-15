@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import google from '../../assets/Google.png'
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import UseTitle from '../UseTitle/UseTitle';
-// import { setAuthToken } from '../../api/AuthToken';
+import { setAuthToken } from '../../api/AuthToken';
 
 const Login = () => {
     UseTitle('login')
@@ -25,6 +25,9 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('login successfully');
+
+                 //jwt-------------
+                 setAuthToken(user)
 
                 // const currentUser = {
                 //     email: user.email
@@ -66,8 +69,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                //  //jwt-------------
-                //  setAuthToken(user)
+                  //jwt-------------
+                 setAuthToken(user)
                 toast.success('Google login successfully');
                 navigate('/')
             })

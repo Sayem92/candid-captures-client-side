@@ -1,15 +1,15 @@
-export const setAuthToken = (user) =>{
+export const setAuthToken = (user) => {
 
     // jwt create---------------------------
     const currentUser = {
-        email : user?.email
+        email: user?.email
     }
-    
 
-    fetch('https://genius-car-server-ten.vercel.app/jwt', {
+
+    fetch('https://assignment-11-server-candid-captures.vercel.app/jwt', {
         method: 'POST',
         headers: {
-            'content-type': "application/json"
+            "content-type": "application/json"
         },
         body: JSON.stringify(currentUser)
     })

@@ -17,11 +17,17 @@ const MyReviews = () => {
 
     useEffect(() => {
 
-        fetch(`https://assignment-11-server-candid-captures.vercel.app/myReviews?email=${user?.email}`)
+        fetch(`https://assignment-11-server-candid-captures.vercel.app/myReviews?email=${user?.email}`, {
+            headers: {
+                authorization: `bearer ${localStorage.getItem("candid-token")}`
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 console.log("my reviews all----", data);
+
                 setReviewsDisplay(data)
+
                 setLoad(false)
 
             })

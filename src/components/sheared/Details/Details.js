@@ -16,7 +16,7 @@ const Details = () => {
     // get mongo db review-------------
     const [allReviews, setAllReviews] = useState([]);
     // review text------
-    const [review, setReview] = useState(null);
+    const [review, setReview] = useState('');
     const { user } = useContext(AuthContext);
     // single service details------------
     const serDetails = useLoaderData();
@@ -27,6 +27,7 @@ const Details = () => {
         const get = e.target.value;
     
         setReview(get);
+        
     }
 
 
@@ -63,8 +64,9 @@ const Details = () => {
                     console.log("new review data", data);
                     let updateReview = []
                     if(data?.acknowledged){
-                        updateReview = [...allReviews, createReview]
+                        updateReview = [ createReview, ...allReviews]
                         setAllReviews(updateReview)
+                        setReview('')
                     }
                 })
 
@@ -139,6 +141,7 @@ const Details = () => {
                 <p className='text-2xl font-semibold py-2'>Add Your Review</p>
                 <textarea
                     onChange={handleReviewChange}
+                    value={review}
                     placeholder="Your review" 
                     name='review' className="w-full h-28 p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400  text-gray-900 border border-gray-600" required></textarea>
             </div>
