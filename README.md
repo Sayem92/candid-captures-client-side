@@ -5,10 +5,10 @@
 [https://candid-captures.web.app/]
 
 ## Code Link Client
-[https://github.com/Porgramming-Hero-web-course/b6a11-service-review-client-side-Sayem92]
+[https://github.com/Sayem92/candid-captures-client-side]
 
 ## Code Link Server
-[https://github.com/Porgramming-Hero-web-course/b6a11-service-review-server-side-Sayem92]
+[https://github.com/Sayem92/candid-captures-server-side]
 
 
 ## key features
