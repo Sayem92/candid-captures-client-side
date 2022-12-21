@@ -32,7 +32,7 @@ const MyReviewUpdate = () => {
             .then(res => res.json())
             .then(data => {
                 toast.success('Update successfully!!!!!!')
-                console.log(data);
+                // console.log(data);
                 form.reset();
                 navigate('/myReviews')
 

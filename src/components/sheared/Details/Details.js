@@ -13,10 +13,12 @@ import DisplayReview from '../DisplayReview/DisplayReview';
 
 const Details = () => {
     UseTitle('details')
+    const [load, setLoad] = useState(false)
     // get mongo db review-------------
     const [allReviews, setAllReviews] = useState([]);
     // review text------
     const [review, setReview] = useState('');
+    const [ratings, setRatings] = useState('2');
     const { user } = useContext(AuthContext);
     // single service details------------
     const serDetails = useLoaderData();
@@ -25,17 +27,20 @@ const Details = () => {
     // collect review text------
     const handleReviewChange = e => {
         const get = e.target.value;
-    
         setReview(get);
-        
+
+    }
+
+    // set rating
+    const handleRatings = rate => {
+        setRatings(rate)
     }
 
 
-   
     // post review to mongodb---------------
     const addReview = () => {
 
-        if(review === null){
+        if (!review) {
             return
         }
 
@@ -47,7 +52,9 @@ const Details = () => {
                 photoURL,
                 email,
                 review,
-                serviceName: title
+                serviceName: title,
+                postDate: user?.metadata.creationTime.slice(5, 16),
+                ratings, 
             }
 
 
@@ -61,10 +68,10 @@ const Details = () => {
                 .then(res => res.json())
                 .then(data => {
                     toast.success('Add a new review successfully')
-                    console.log("new review data", data);
+                    // console.log("new review data", data);
                     let updateReview = []
-                    if(data?.acknowledged){
-                        updateReview = [ createReview, ...allReviews]
+                    if (data?.acknowledged) {
+                        updateReview = [createReview, ...allReviews]
                         setAllReviews(updateReview)
                         setReview('')
                     }
@@ -75,21 +82,28 @@ const Details = () => {
 
     }
 
-  
+
 
     // get review mongodb--------------
     useEffect(() => {
+        setLoad(true)
         fetch(`https://assignment-11-server-candid-captures.vercel.app/getReview/${_id}`)
             .then(res => res.json())
             .then(data => {
                 setAllReviews(data)
-                console.log("load review data", data);
+                setLoad(false)
+                // console.log("load review data", data);
             })
 
-    }, []);
+    }, [_id]);
 
 
+    if (load) {
+        return <div className='lg:w-16 w-16  mx-auto  m-20'>
+            <div className=" w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-600"></div>
+        </div>
 
+    }
 
 
     return (
@@ -121,16 +135,16 @@ const Details = () => {
 
                 {
                     allReviews?.length === 0 ?
-                    
-                    <h1 className='text-3xl font-bold text-blue-500'>No review available</h1>
 
-                    :
+                        <h1 className='text-3xl font-bold text-blue-500'>No review available</h1>
 
-                    allReviews?.map(personReview => <DisplayReview
-                        key={Math.random()*10}
-                        personReview={personReview}
+                        :
 
-                    ></DisplayReview>)
+                        allReviews?.map(personReview => <DisplayReview
+                            key={Math.random() * 10}
+                            personReview={personReview}
+
+                        ></DisplayReview>)
                 }
 
 
@@ -142,8 +156,19 @@ const Details = () => {
                 <textarea
                     onChange={handleReviewChange}
                     value={review}
-                    placeholder="Your review" 
+                    placeholder="Your review"
                     name='review' className="w-full h-28 p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400  text-gray-900 border border-gray-600" required></textarea>
+
+                <div className="rating pt-3 pb-5">
+                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" defaultChecked />
+                    <input type="radio" onChange={() => handleRatings('3')}
+                        name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                    <input type="radio" onChange={() => handleRatings('4')}
+                        name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                    <input type="radio" onChange={() => handleRatings('5')}
+                        name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                </div>
             </div>
 
             <div className=''>

@@ -43,7 +43,7 @@ const Services = () => {
 
             <div className='text-center my-10'>
                 <Link to='/allServices'>
-                    <button className="btn btn-outline btn-warning">See All</button>
+                    <button className="animate-bounce btn btn-warning">See All</button>
                 </Link>
             </div>
         </div>

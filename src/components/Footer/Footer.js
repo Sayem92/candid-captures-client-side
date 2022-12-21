@@ -4,7 +4,7 @@ import logo from '../../assets/logo.png'
 const Footer = () => {
     return (
 
-        <div className="px-20 pt-16 mx-auto w-full bg-gray-800 text-white">
+        <div className="px-10 md:px-20 pt-16 mx-auto w-full bg-gray-800 text-white">
             <div className="grid gap-10 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
                 <div className="sm:col-span-2">
                     <p

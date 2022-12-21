@@ -24,7 +24,7 @@ const MyReviews = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log("my reviews all----", data);
+                // console.log("my reviews all----", data);
 
                 setReviewsDisplay(data)
 
@@ -54,7 +54,7 @@ const MyReviews = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
+                    // console.log(data)
                     if (data.deletedCount > 0) {
                         toast.success("deleted successfully")
                         const remaining = reviewsDisplay.filter(rewv => rewv._id !== _id)
