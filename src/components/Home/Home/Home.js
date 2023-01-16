@@ -4,6 +4,7 @@ import UseTitle from '../../UseTitle/UseTitle';
 import ClientReview from '../ClientReview/ClientReview';
 import Clients from '../Clients/Clients';
 import Header from '../Header/Header';
+import OurTeams from '../OurTeams/OurTeams';
 import PopularPictures from '../PopularPictures/PopularPictures';
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
             <PopularPictures></PopularPictures>
             <Clients></Clients>
             <ClientReview></ClientReview>
+            <OurTeams></OurTeams>
         </div>
     );
 };
